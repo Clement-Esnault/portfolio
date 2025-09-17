@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.Pane?>
-
-<Pane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:id="zoneraphique" 
-  prefWidth="800.0" fx:controller="app.fxml.controleurs.GraphicPlace" prefHeight="600.0">
-	
-
-</Pane>
