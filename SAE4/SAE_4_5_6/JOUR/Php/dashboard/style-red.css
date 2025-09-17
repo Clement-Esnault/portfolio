@@ -1,0 +1,229 @@
+/* === STYLE GÉNÉRAL === */
+body {
+    background-color: #f8f8f8; /* Couleur de fond plus douce */
+    font-family: 'Poppins', sans-serif; /* Police plus moderne */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: #333;
+  }
+  
+  h1, h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #2f2f2f;
+    margin-bottom: 15px;
+  }
+  
+  .banniere {
+    background-color: #333; /* Fond sombre */
+    color: white;
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: bold;
+    padding: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .main-content {
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 1100px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* === Recherche Plat === */
+  .recherche-plat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .recherche-plat input {
+    padding: 12px 18px;
+    width: 70%;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+  }
+  
+  .recherche-plat button {
+    padding: 12px 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .recherche-plat button:hover {
+    background-color: #e7a854;
+    color: black;
+  }
+  
+  /* === Liste des Plats === */
+  #plats-list {
+    margin-bottom: 50px;
+  }
+  
+  .clients-table {
+    width: 100%;
+    margin: 30px 0;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  
+  .clients-table th, .clients-table td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .clients-table th {
+    background-color: #e7a854;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .clients-table tr:hover {
+    background-color: rgba(231, 168, 84, 0.1);
+    cursor: pointer;
+  }
+  
+  .clients-table .apply-promo {
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .clients-table .apply-promo:hover {
+    background-color: #e7a854;
+    color: black;
+  }
+  
+  form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+  position: relative;
+}
+
+label {
+  font-size: 1em;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #000;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e7a854;
+  color: black;
+}
+
+/* === ERREUR === */
+.error {
+  color: red;
+  font-size: 0.9em;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 5px;
+  display: none;
+}
+
+input:invalid + .error,
+textarea:invalid + .error {
+  display: block;
+}
+
+/* === HINT === */
+.hint {
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 5px;
+  display: block;
+}
+
+/* === RÉPONSES DE L'UTILISATEUR === */
+input:valid + .error,
+textarea:valid + .error {
+  display: none;
+}
+
+.footer {
+  margin-top: auto;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 2em 1em 1em;
+  font-size: 0.9em;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2em;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 1em;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-column h4 {
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #ccc;
+  padding-top: 1em;
+  margin-top: 1em;
+  font-size: 0.85em;
+}
