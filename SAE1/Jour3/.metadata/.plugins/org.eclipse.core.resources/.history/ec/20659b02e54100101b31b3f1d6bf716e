@@ -1,0 +1,25 @@
+package app.graphicplace;
+
+import app.model.map.Place;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.shape.Circle;
+
+public class GraphicPlaceController {
+
+
+    private Place place;
+
+    public void setPlace(Place place) {
+        this.place = place;
+        label.setText(place.getName());
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public Circle getCircle() {
+        return circle;
+    }
+}

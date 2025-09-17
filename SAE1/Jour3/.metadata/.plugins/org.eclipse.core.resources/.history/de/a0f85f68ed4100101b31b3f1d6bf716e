@@ -1,0 +1,5 @@
+package app.graphicplace;
+
+public enum GraphicPlaceState {
+
+}

@@ -1,0 +1,116 @@
+package app.fxml.controleurs;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
+import java.util.Random;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+
+
+import app.Main;
+import app.graphicplace.GraphicPlace;
+import app.model.map.Place;
+import app.model.map.World;
+import app.model.parser.WorldIO;
+import javafx.collections.ObservableList;
+
+import app.graphic.path.GraphicPath;
+import app.graphicplace.GraphicPlace;
+import app.model.map.Path;
+import app.model.map.Place;
+import app.model.map.World;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
+
+public class MainController implements Initializable {
+
+
+	@FXML public GraphicPlace centralController;
+	public World world;
+	private Place place;
+	public boolean dijkstraInProgress;
+	public boolean worldGenInProgress;
+	//public ObservableList<DijkstraEventListener> obsList;
+
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+		try {
+	        world = WorldIO.loadWorld(Main.class.getResourceAsStream("Monde1.json"));
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		  
+	
+	    centralController.setApp(this);
+	    }
+	    
+	    
+	
+    private final Map<Place, GraphicPlace> placeMap = new HashMap<>();
+    private final Map<Path, GraphicPath> pathMap = new HashMap<>();
+    private World currentWorld;
+
+    @FXML
+    private Pane mapPane;
+
+
+  
+//-------------------------------------------------------------------------------------------------------------------
+    public void ChangementDeMonde(World newWorld) {
+        this.currentWorld = newWorld;
+        mapPane.getChildren().clear();
+        placeMap.clear();
+        pathMap.clear();
+
+        Random rand = new Random();
+
+        for (Place place : newWorld.getPlaces()) {
+            double x = rand.nextDouble() * mapPane.getWidth();
+            double y = rand.nextDouble() * mapPane.getHeight();
+            
+            GraphicPlace gp = new GraphicPlace(place);
+            gp.setLayoutX(x);
+            gp.setLayoutY(y);
+
+            registerPlace(place, gp);
+            mapPane.getChildren().add(gp);
+        }
+
+        for ( Path path : newWorld.getPaths() ) {
+            GraphicPlace premier = getGraphicPlace(path.getFirstPlace());
+            GraphicPlace deuxième = getGraphicPlace(path.getSecondPlace());
+
+            if (premier != null && deuxième != null) {
+                GraphicPath graphicPath = new GraphicPath(path, premier, deuxième);
+                registerPath(path, graphicPath);
+                mapPane.getChildren().addAll(graphicPath, graphicPath.getLabel());
+            }
+        }
+    }
+//--------------------------------------------------------------------------------------------------------------------
+    
+    
+    //Accesseurs 
+    public GraphicPlace getGraphicPlace(Place place) {
+        return placeMap.get(place);
+    }
+
+    public GraphicPath getGraphicPath(Path path) {
+        return pathMap.get(path);
+    }
+    
+    //Méthodes 
+    public void registerPlace(Place place, GraphicPlace graphic) {
+        placeMap.put(place, graphic);
+    }
+
+    public void registerPath(Path path, GraphicPath graphic) {
+        pathMap.put(path, graphic);
+    }
+
+}
