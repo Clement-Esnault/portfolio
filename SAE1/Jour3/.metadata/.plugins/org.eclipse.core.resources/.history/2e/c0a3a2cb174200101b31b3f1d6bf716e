@@ -1,0 +1,91 @@
+package app.fxml.controleurs;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import app.graphic.path.GraphicPath;
+import app.graphicplace.GraphicPlace;
+import app.model.map.Path;
+import app.model.map.Place;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+
+public class GraphicController {
+
+	@FXML
+	private Pane zoneGraphique;
+
+	/*
+	 * @FXML private Circle circle;
+	 * 
+	 * @FXML private Label label;
+	 */
+
+	/*
+	 * @FXML private Line line;
+	 */
+
+	private final Map<Place, GraphicPlace> placeMap = new HashMap<>();
+	private final Map<Path, GraphicPath> pathMap = new HashMap<>();
+
+	private MainController app;
+
+	public void setApp(MainController app) {
+    	this.app = app;
+    	zoneGraphique.widthProperty().addListener((obs, oldVal, newVal) -> {
+    		app.world.addListener((a, o, n) -> {
+	    		for (Place p : n.getPlaces()) {
+	    				GraphicPlace cercle = new GraphicPlace(p);
+	    				Random rand = new Random();
+	    				double radius = 15;
+	    				double width = zoneGraphique.getWidth();
+	    				double height = zoneGraphique.getHeight();
+	    				double x = rand.nextDouble() * (width - 2 * radius);
+	    				double y = rand.nextDouble() * (height - 2 * radius);
+
+	    				
+	    				
+	    				cercle.setRadius(radius);
+	    				cercle.setCenterX(x + radius);
+	    				cercle.setCenterY(y + radius);
+	    				//cercle.setStrokeWidth(10.0);
+	    				cercle.setStroke(Color.BLACK);
+	    				//cercle.setFill(changeColor(Place));
+	    				
+	    				
+	    				Label Idnom = new Label(String.valueOf(p.getId()));
+	    				Idnom.setStyle("-fx-font-weight: bold; -fx-text-fill: black;");
+	    				Idnom.layoutXProperty().bind(cercle.centerXProperty().subtract(Idnom.widthProperty().divide(2)));
+	    				Idnom.layoutYProperty().bind(cercle.centerYProperty().subtract(Idnom.heightProperty().divide(2)));
+	    				Idnom.setMouseTransparent(true);
+	    				
+	    				
+	    				zoneGraphique.getChildren().addAll(cercle, Idnom);
+		
+	    				}
+	    		});});
+    	
+		/*zoneGraphique.heightProperty().addListener((ob, oldVa, newVa) -> {
+			app.world.addListener((a, o, n) -> {
+	    		for (Place p : n.getPlaces()) {
+	    				GraphicPlace cercle = new GraphicPlace(p);
+	    				cercle.ajouterCercle(p);
+	    				zoneGraphique.getChildren().add(cercle);
+		
+    	
+	    		}});});*/}
+		
+			
+  
+    	
+    
+
+    	
+    	
+		//this.path = new GraphicPath();
+    
+
+}

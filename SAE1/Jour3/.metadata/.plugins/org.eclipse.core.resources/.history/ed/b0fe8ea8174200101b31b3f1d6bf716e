@@ -1,0 +1,65 @@
+package app.fxml.controleurs;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import app.graphic.path.GraphicPath;
+import app.graphicplace.GraphicPlace;
+import app.model.map.Path;
+import app.model.map.Place;
+import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
+
+public class GraphicController {
+
+	@FXML
+	private Pane zoneGraphique;
+
+	/*
+	 * @FXML private Circle circle;
+	 * 
+	 * @FXML private Label label;
+	 */
+
+	/*
+	 * @FXML private Line line;
+	 */
+
+	private final Map<Place, GraphicPlace> placeMap = new HashMap<>();
+	private final Map<Path, GraphicPath> pathMap = new HashMap<>();
+
+	private MainController app;
+
+	public void setApp(MainController app) {
+    	this.app = app;
+    	zoneGraphique.widthProperty().addListener((obs, oldVal, newVal) -> {
+    		app.world.addListener((a, o, n) -> {
+	    		for (Place p : n.getPlaces()) {
+	    				GraphicPlace cercle = new GraphicPlace(p);
+	    				cercle.ajouterCercle(p);
+	    				zoneGraphique.getChildren().add(cercle);
+		
+	    				}
+	    		});});
+    	
+		zoneGraphique.heightProperty().addListener((ob, oldVa, newVa) -> {
+			app.world.addListener((a, o, n) -> {
+	    		for (Place p : n.getPlaces()) {
+	    				GraphicPlace cercle = new GraphicPlace(p);
+	    				cercle.ajouterCercle(p);
+	    				zoneGraphique.getChildren().add(cercle);
+		
+    	
+	    		}});});}
+		
+			
+  
+    	
+    
+
+    	
+    	
+		//this.path = new GraphicPath();
+    
+
+}

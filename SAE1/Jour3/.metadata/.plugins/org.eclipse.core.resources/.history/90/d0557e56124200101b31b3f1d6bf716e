@@ -1,0 +1,62 @@
+package app.fxml.controleurs;
+
+import java.io.IOException;
+
+import app.Main;
+import app.graphic.path.GraphicPath;
+import app.graphicplace.GraphicPlace;
+import app.model.map.World;
+import app.model.parser.WorldIO;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
+public class GraphicController {
+	
+	@FXML
+    private Pane zoneGraphique;
+
+   /* @FXML
+    private Circle circle;
+
+    @FXML
+    private Label label;*/
+
+    /*@FXML
+    private Line line;*/
+    
+
+    @FXML
+    private GraphicPath Path;
+
+    @FXML
+    private GraphicPlace Place;
+
+    
+    
+    
+    private MainController app ;
+    
+    private GraphicPath path;
+    
+    private GraphicPlace place;
+    
+    public World world;
+    
+    public void setApp(MainController app) {
+    	this.app = app;
+    	this.world = app.world;
+    	try {
+	        world = WorldIO.loadWorld(Main.class.getResourceAsStream("Monde1.json"));
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+    	this.Place= new GraphicPlace();
+    	Place.setApp(this);
+    	
+		//this.path = new GraphicPath();
+    }
+	
+}

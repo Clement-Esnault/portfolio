@@ -1,0 +1,9 @@
+package app.graphicplace;
+
+import app.model.map.Place;
+import javafx.scene.shape.Circle;
+
+public class GraphicPlace extends Circle {
+	
+	private Place place;
+}

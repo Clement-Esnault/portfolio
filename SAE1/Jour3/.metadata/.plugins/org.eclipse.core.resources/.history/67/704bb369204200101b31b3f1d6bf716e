@@ -1,0 +1,220 @@
+package app.graphicplace;
+
+import java.io.IOException;
+import java.util.Random;
+
+import app.Main;
+import app.fxml.controleurs.GraphicController;
+import app.fxml.controleurs.MainController;
+import app.model.map.Place;
+import app.model.map.World;
+import app.model.parser.WorldIO;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
+
+public class GraphicPlace extends Circle {
+
+	public GraphicController app;
+	private Place place;
+	private Label nom;
+	@FXML
+	private Pane zoneGraphique;
+	private World world;
+	@FXML
+	private Circle circle;
+	@FXML
+	private Label label;
+	private GraphicPlaceState state ;
+	private SimpleObjectProperty<GraphicPlaceState> etat = new SimpleObjectProperty<>(GraphicPlaceState.IS_DEFAULT);
+	private SimpleBooleanProperty selected = new SimpleBooleanProperty(false);
+	
+	private double prevX;
+	private double prevY;
+
+	public void setApp(GraphicController app) {
+		this.app = app;
+		zoneGraphique.widthProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal.doubleValue() > 0 && zoneGraphique.getHeight() > 0) {
+				//ajouterTouteslesPlaces();
+			}
+		});
+
+		zoneGraphique.heightProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal.doubleValue() > 0) {
+				//ajouterTouteslesPlaces();
+			}
+		});
+	}
+
+	/*public void ajouterTouteslesPlaces() {
+		zoneGraphique.getChildren().clear();
+		for (Place place : app.world.getPlaces()) {
+			ajouterCercle(place);
+		}
+	}*/
+	
+	/*
+	 * zoneGraphique.heightProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal.doubleValue() > 0) {
+				for (Place place : app.world.getPlaces()) {
+				ajouterCercle(place);
+			}
+		});
+	}
+	 */
+
+	public void ajouterCercle(Place Place) {
+		System.out.println(Place.getName());
+		Random rand = new Random();
+		double radius = 15;
+		double width = zoneGraphique.getWidth();
+		double height = zoneGraphique.getHeight();
+		double x = rand.nextDouble() * (width - 2 * radius);
+		double y = rand.nextDouble() * (height - 2 * radius);
+
+		
+		GraphicPlace cercle = new GraphicPlace(Place);
+		cercle.setRadius(radius  );
+		cercle.setCenterX(x + radius );
+		cercle.setCenterY(y + radius );
+		//cercle.setStrokeWidth(10.0);
+		cercle.setStroke(Color.BLACK);
+		//cercle.setFill(changeColor(Place));
+		
+		
+		Label Idnom = new Label(String.valueOf(Place.getId()));
+		Idnom.setStyle("-fx-font-weight: bold; -fx-text-fill: black;");
+		Idnom.layoutXProperty().bind(cercle.centerXProperty().subtract(Idnom.widthProperty().divide(2)));
+		Idnom.layoutYProperty().bind(cercle.centerYProperty().subtract(Idnom.heightProperty().divide(2)));
+		Idnom.setMouseTransparent(true);
+		
+		
+		zoneGraphique.getChildren().addAll(cercle, Idnom);
+	}
+
+	public Place getPlace() {
+		return place;
+	}
+
+	public Label getLabel() {
+		return label;
+	}
+	
+	//
+	/* MODIF POUR GraphicPlaceState */
+	//
+	//
+	//
+	
+	public GraphicPlaceState getEtat() {
+        return etat.get();
+    }
+	public void setEtat(GraphicPlaceState newEtat) {
+        etat.set(newEtat);
+    }
+
+    public SimpleObjectProperty<GraphicPlaceState> etatProperty() {
+        return etat;
+    }
+
+    public void setSelected(boolean sel) {
+        selected.set(sel);
+    }
+
+    public boolean isSelected() {
+        return selected.get();
+    }
+
+    public SimpleBooleanProperty selectedProperty() {
+        return selected;
+    }
+	
+    public GraphicPlace() {
+    	
+    }
+    
+    public GraphicPlace(Place place) {
+        super();
+        this.place = place;
+        this.setRadius(20);
+     
+        this.setFill(changeColor(place));
+        
+        this.fillProperty().bind(
+            javafx.beans.binding.Bindings.createObjectBinding(
+                () ->changeColor(place),
+                etat
+            )
+        );
+        setOnMousePressed(e -> {
+        	System.out.println(e);
+       
+ 
+        	
+	        if (e.getButton() == javafx.scene.input.MouseButton.PRIMARY) {
+	            setSelected(true);
+	            
+	            prevX = e.getX();
+	            prevY = e.getY();
+	            this.setStrokeWidth(5.0);
+	            e.consume(); 
+	        }
+	    });
+		setOnMouseDragged(e -> {
+			this.selected.set(false);
+	        if (e.getButton() == javafx.scene.input.MouseButton.PRIMARY) {
+	            setCenterX(e.getX());
+	            setCenterY(e.getY());
+	           
+	            e.consume(); 
+	            
+	        }
+	    });
+		setOnMouseClicked(e -> {
+	        if (e.getButton() == javafx.scene.input.MouseButton.PRIMARY) {
+	            setSelected(true);
+	            e.consume(); 
+	         
+	        }
+	        }
+	     
+		
+		);
+		
+	        
+        
+    }
+    
+    public Color changeColor(Place place) {
+    	if(place.isDefeat() ) {
+    		return GraphicPlaceState.IS_DEFEAT.getFill();
+    	}
+    	if(place.isEnd() ) {
+    		return GraphicPlaceState.IS_END.getFill();
+    	}
+    	if(place.isStart() ) {
+    		return GraphicPlaceState.IS_START.getFill();
+    	}
+    	//System.out.println(GraphicPlaceState.IS_DEFEAT.getFill());
+    	return GraphicPlaceState.IS_DEFAULT.getFill();
+    }
+    public void ChangeBorder(Place place) {
+    	
+    }
+    
+    
+    
+
+    
+	
+}

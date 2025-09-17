@@ -1,0 +1,128 @@
+package app.fxml.controleurs;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import app.graphic.path.GraphicPath;
+import app.graphicplace.GraphicPlace;
+import app.model.map.Path;
+import app.model.map.Place;
+import app.model.map.World;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+
+public class GraphicController {
+
+	@FXML
+	private Pane zoneGraphique;
+
+	/*
+	 * @FXML private Circle circle;
+	 * 
+	 * @FXML private Label label;
+	 */
+
+	/*
+	 * @FXML private Line line;
+	 */
+
+	private final Map<Place, GraphicPlace> placeMap = new HashMap<>();
+	private final Map<Path, GraphicPath> pathMap = new HashMap<>();
+
+	private MainController app;
+
+	public void setApp(MainController app) {
+        this.app = app;
+
+        app.world.addListener((obs, oldWorld, newWorld) -> {
+            placerCercles(newWorld, zoneGraphique.getWidth(), zoneGraphique.getHeight());
+            placerPath(newWorld);
+            
+        });
+
+        
+        if (app.world.get() != null && zoneGraphique.getWidth() > 0) {
+            placerCercles(app.world.get(), zoneGraphique.getWidth(), zoneGraphique.getHeight());
+            placerPath(app.world.get());
+        }
+        
+        
+        
+    }
+
+    private void placerCerclesSiModelePresent(double width, double height) {
+        if (app != null && app.world.get() != null) {
+            placerCercles(app.world.get(), width, height);
+        }
+    }
+
+    
+    
+    
+    
+    
+    
+    private void placerCercles(World monde, double width, double height) {
+        zoneGraphique.getChildren().clear(); // reset
+
+        System.out.println(width);
+        System.out.println(height);
+        
+        for (Place p : monde.getPlaces()) {
+            Random rand = new Random();
+            double radius = 15;
+            double x = rand.nextDouble() * (width - 2 * radius);
+            double y = rand.nextDouble() * (height - 2 * radius);
+
+            GraphicPlace cercle = new GraphicPlace(p);
+            cercle.setRadius(radius);
+            cercle.setCenterX(x + radius);
+            cercle.setCenterY(y + radius);
+            cercle.setStroke(Color.BLACK);
+
+            Label label = new Label(String.valueOf(p.getId()));
+            label.setStyle("-fx-font-weight: bold; -fx-text-fill: black;");
+            label.setMouseTransparent(true);
+            label.layoutXProperty().bind(cercle.centerXProperty().subtract(label.widthProperty().divide(2)));
+            label.layoutYProperty().bind(cercle.centerYProperty().subtract(label.heightProperty().divide(2)));
+
+            zoneGraphique.getChildren().addAll(cercle, label);
+            placeMap.put(p, cercle);
+        }
+    }
+    private void placerPath(World monde  ) {
+    	zoneGraphique.getChildren().clear(); // reset
+
+        for (Path p : monde.getPaths()) {
+            //Random rand = new Random();
+           // double radius = 15;
+            //double x = rand.nextDouble() * (width - 2 * radius);
+            //double y = rand.nextDouble() * (height - 2 * radius);
+            
+            GraphicPlace p1 = placeMap.get(p.getFirstPlace());
+            GraphicPlace p2 = placeMap.get(p.getSecondPlace());
+            GraphicPath line = new GraphicPath(p,p.getFirstPlace(),p.getSecondPlace());
+            //line.setRadius(radius);
+            line.startXProperty().bind(p1.centerXProperty());
+            line.startYProperty().bind(p1.centerYProperty());
+            line.endXProperty().bind(p2.centerXProperty());
+            line.endYProperty().bind(p2.centerYProperty());
+           
+            line.setStroke(Color.BLACK);
+
+            Label label = new Label(String.valueOf(p.getLength()));
+            label.setStyle("-fx-font-weight: bold; -fx-text-fill: black;");
+            label.setMouseTransparent(true);
+            label.layoutXProperty().bind(line.endYProperty().subtract(label.widthProperty().divide(2)));
+            label.layoutYProperty().bind(line.endXProperty().subtract(label.heightProperty().divide(2)));
+
+            zoneGraphique.getChildren().addAll(line, label);
+        }
+    }
+}
+		
+    
+

@@ -1,0 +1,43 @@
+package app.fxml.controleurs;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import app.Main;
+import app.graphicplace.GraphicPlace;
+import app.model.map.Place;
+import app.model.map.World;
+import app.model.parser.WorldIO;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+
+public class MainController implements Initializable {
+
+	
+	@FXML public GraphicPlace centralController;
+	private World world;
+	private Place place;
+	
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		try {
+	        world = WorldIO.loadWorld(Main.class.getResourceAsStream("Monde1.json"));
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		  
+		Place p = new Place(1, "Place 1", null, world);
+
+	    GraphicPlace graphicPlace = new GraphicPlace(this);
+	    graphicPlace.AddGraphicPlace(p);
+		
+	}
+	
+	public void setPlace(Place place) {
+		this.place=place;
+	}
+	
+}

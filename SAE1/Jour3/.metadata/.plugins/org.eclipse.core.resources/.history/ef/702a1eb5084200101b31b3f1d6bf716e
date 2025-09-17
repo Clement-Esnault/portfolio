@@ -1,0 +1,81 @@
+package app.graphic.path ;
+
+import app.fxml.controleurs.MainController;
+import app.graphicplace.GraphicPlace;
+import app.model.map.Path;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+
+public class GraphicPath extends Line {
+
+    private final Path path;
+    private final GraphicPlace startPlace;
+    private final GraphicPlace endPlace;
+    private final Label distanceLabel;
+    private GraphicPathState state;
+    public MainController app;
+
+    public GraphicPath(Path path, GraphicPlace start, GraphicPlace end){
+        this.path = path;
+        this.startPlace = start;
+        this.endPlace = end;
+		// pour que case DEFAULT soit le mode défaut 
+        this.state = GraphicPathState.DEFAULT;
+
+        startXProperty().bind( start.layoutXProperty().add(start.getBoundsInParent().getWidth() / 2));
+        startYProperty().bind( start.layoutYProperty().add(start.getBoundsInParent().getHeight() / 2));
+        endXProperty().bind( end.layoutXProperty().add(end.getBoundsInParent().getWidth() / 2));
+        endYProperty().bind( end.layoutYProperty().add(end.getBoundsInParent().getHeight() / 2));
+
+        // Label
+        distanceLabel = new Label( String.valueOf( path.getLength() ) );
+        updateLabelPosition();
+
+        // Le Node.toBack
+        this.toBack();
+    }
+
+    public void setState(GraphicPathState newState){
+        this.state = newState;
+
+        switch (newState){
+            case DEFAULT:
+                setStroke( Color.BLACK );
+                break;
+
+            case HAS_FOCUS:
+                setStroke( Color.BLUE );
+                break;
+
+            case HAS_FOCUS_MODIFIED:
+                setStroke( Color.ORANGE );
+                break;
+        }
+    }
+
+    public GraphicPathState getState() {
+        return state;
+    }
+
+    public Label getLabel() {
+        return distanceLabel;
+    }
+
+	public Path getPath() {
+        return path;
+    }
+
+    public void updateLabelPosition(){
+        double midX = ( getStartX() + getEndX() )/ 2;
+        double midY = ( getStartY() + getEndY() )/ 2;
+        distanceLabel.setLayoutX( midX );
+        distanceLabel.setLayoutY( midY );
+    }
+    
+    
+    public void setApp(MainController app) {
+    	this.app=app;
+    }
+
+}

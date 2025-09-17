@@ -1,0 +1,47 @@
+package app.fxml.controleurs;
+
+import java.io.IOException;
+
+import app.Main;
+import app.graphic.path.GraphicPath;
+import app.graphicplace.GraphicPlace;
+import app.model.map.World;
+import app.model.parser.WorldIO;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
+public class GraphicController {
+	
+	@FXML
+    private Pane zoneGraphique;
+
+   /* @FXML
+    private Circle circle;
+
+    @FXML
+    private Label label;*/
+
+    /*@FXML
+    private Line line;*/
+    
+    
+    private MainController app ;*
+    
+    
+    public void setApp(MainController app) {
+    	this.app = app;
+    	app.world.addListener((obs, old, newV) -> {
+    		for (Place p : newV.getPlaces()) {
+    			
+    		}
+    	});
+    	this.Place= new GraphicPlace();
+    	Place.setApp(this);
+    	
+		//this.path = new GraphicPath();
+    }
+	
+}

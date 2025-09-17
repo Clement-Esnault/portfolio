@@ -1,0 +1,40 @@
+package app.graphicplace;
+
+import javafx.scene.paint.Color;
+
+public enum GraphicPlaceState {
+	IS_DEFAULT(Color.LIGHTGRAY, Color.BLACK, 1),
+    IS_START(Color.GREEN, Color.BLACK, 2),
+    IS_END(Color.RED, Color.BLACK, 2),
+    IS_DEFEAT(Color.DARKRED, Color.BLACK, 2),
+    DIJKSTRA_OVER(Color.LIGHTBLUE, Color.BLACK, 2),
+    DIJKSTRA_VISITED(Color.YELLOW, Color.BLACK, 2),
+    DIJKSTRA_UNVISITED(Color.WHITE, Color.BLACK, 1),
+    DIJKSTRA_CURRENT(Color.ORANGE, Color.BLACK, 3),
+    DIJKSTRA_MODIFIED(Color.PURPLE, Color.BLACK, 2);
+	
+	private final Color fill;
+	private final Color strokeColor;
+	private final double strokeWidth;
+
+	GraphicPlaceState(Color fill, Color strokeColor, double strokeWidth) {
+		this.fill = fill;
+		this.strokeColor = strokeColor;
+		this.strokeWidth = strokeWidth;
+	}
+
+	public Color getFill() {
+		return fill;
+	}
+
+	public Color getStrokeColor() {
+		return strokeColor;
+	}
+
+	public double getStrokeWidth() {
+		return strokeWidth;
+	}
+	
+	
+	
+}
