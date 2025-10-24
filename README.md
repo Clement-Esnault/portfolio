@@ -1,1 +1,1 @@
-Voici les differents projet informatique réaliser durant le 2eme semestre de 1ere année
+Voici les différents projets informatiques réalisés durant le 2ᵉ semestre de 1ʳᵉ année.
