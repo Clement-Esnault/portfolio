@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="app.graphicplace.GraphicPlace"/>
-    <fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
-    <fullyQualifiedTypeName name="app.ai.world.WorldGenerator"/>
-    <fullyQualifiedTypeName name="javafx.beans.property.SimpleObjectProperty"/>
-    <fullyQualifiedTypeName name="javafx.application.Platform"/>
-</qualifiedTypeNameHistroy>
