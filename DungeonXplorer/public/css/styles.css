@@ -1,0 +1,1983 @@
+/* =========================
+   RESET & GLOBAL
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: whitesmoke; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 100px;
+}
+
+/* Background */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -20px;
+    background: url('../img/background/wp2.jpg') center / cover no-repeat;
+    filter: blur(6px);
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.55);
+    z-index: -1;
+}
+
+/* =========================
+   FLEX UTILITIES
+========================= */
+.flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-row-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: rgb(20, 20, 20);
+    padding: 10px 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeInBottomHeader 0.6s ease-out;
+}
+
+@keyframes fadeInBottomHeader {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   BUTTONS & LINKS
+========================= */
+.button,
+form button,
+.action-btn,
+.primary-btn,
+.submit-btn,
+a.inputStyle,
+.chapter a,
+.chapter button,
+.adventure .button {
+    padding: 12px 24px;
+    background: #C4975E;
+    color: #1A1A1A;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.button {
+    background: transparent;
+    color: whitesmoke;
+}
+
+.button:hover,
+form button:hover {
+    background: #8B7347;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    padding: 12px 24px;
+    background: rgba(60, 60, 60, 0.85);
+    color: #e0e0e0;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.secondary-btn:hover,
+.secondary-btn:focus {
+    background: rgba(90, 90, 90, 0.95);
+    border-color: #C4975E;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.secondary-btn:active {
+    transform: translateY(0);
+    background: rgba(50, 50, 50, 1);
+}
+
+.delete-btn {
+    padding: 12px 24px;
+    background: rgba(255, 0, 0, 0.85);
+    color: #e0e0e0;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+    background: rgba(90, 90, 90, 0.95);
+    border-color: #C4975E;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.delete-btn:active {
+    transform: translateY(0);
+    background: rgba(50, 50, 50, 1);
+}
+
+/* =========================
+   SECTIONS & CONTAINERS
+========================= */
+section {
+    min-height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container,
+.about-container,
+.home-container,
+.choose-hero,
+.combat-container,
+.adventure,
+.chapitre {
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    padding: 40px 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    margin: auto;
+    text-align: center;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* =========================
+   TABLES
+========================= */
+table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    background-color: #333;
+    color: whitesmoke;
+    border: 1px solid #444;
+}
+
+th {
+    background-color: #444;
+    font-weight: bold;
+}
+
+td a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background: #C4975E;
+    color: #1A1A1A;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+td a:hover {
+    background: #8B7347;
+    transform: translateY(-2px);
+}
+
+td a.delete-btn {
+    background: rgba(255, 0, 0, 0.85);
+    color: whitesmoke;
+}
+
+td a.delete-btn:hover {
+    background: rgba(90, 90, 90, 0.95);
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.items-table th, .items-table td {
+    padding: 12px;
+    border: 1px solid #444;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.items-table th {
+    background-color: #444;
+    font-weight: bold;
+}
+
+.items-table td input,
+.items-table td textarea,
+.items-table td select {
+    background: #333;
+    color: whitesmoke;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.items-table td textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+input[type="text"], input[type="number"] {
+    width: auto;
+    min-width: 150px;
+    max-width: 300px;
+}
+
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+table.form-table {
+    width: 100%;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+table.form-table td, table.form-table th {
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    padding: 5px;
+}
+
+input.dynamic-width {
+    width: auto;
+    min-width: 50px;
+    max-width: 150px;
+    box-sizing: border-box;
+}
+
+/* =========================
+   TITLES & TEXT
+========================= */
+h1, h2, h3 {
+    color: #C4975E;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    max-width: 700px;
+    margin: 10px auto;
+    line-height: 1.6;
+}
+
+.chapitre p,
+.adventure p {
+    text-align: justify;
+}
+
+/* =========================
+   FORMS
+========================= */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+.form-group label,
+.form-label {
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: #dcdcdc;
+    font-weight: bold;
+}
+
+.form-label {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-group input,
+.form-input,
+select {
+    width: 100%; 
+    max-width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #2a2a2a;
+    color: whitesmoke;
+    font-size: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-input:focus {
+    background: #333;
+    border-color: #007bff;
+    outline: none;
+}
+
+textarea.form-input {
+    min-height: 50px;
+    max-height: 500px;
+    resize: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    background: rgb(20,20,20);
+    padding: 20px 0;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* =========================
+   COMBAT
+========================= */
+.combat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    max-width: 900px;
+    width: 90%;
+}
+
+.combat-info {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.combatant {
+    background: #2E2E2E;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 200px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.bar-container {
+    width: 100%;
+    height: 18px;
+    background: #444;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.bar-pv { background: #e74c3c; height: 100%; }
+.bar-mana { background: #3498db; height: 100%; }
+
+#combat-log,
+#combat-log-content {
+    width: 100%;
+    max-height: 250px;
+    background: #1a1a1a;
+    border: 1px solid #4A7A66;
+    border-radius: 8px;
+    padding: 15px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+/* =========================
+   HERO CREATION
+========================= */
+.choose-hero {
+    background: rgba(20,20,20,0.95);
+    border: 2px solid #4a3f2a;
+    max-width: 1400px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.divForm { 
+    width: 100%; 
+    height: 100%;
+}
+
+.formHero {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+}
+
+.divHeroStats, .divHeroClass, .divHeroImg {
+    border: 1px solid #4a3f2a;
+    background: rgba(15,12,8,0.8);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container_hero_infos, .container_hero_class, .container_hero_stats {
+    border: 1px solid #4a3f2a;
+    background: rgba(10,8,5,0.5);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.container_hero_infos:last-child, 
+.container_hero_class:last-child, 
+.container_hero_stats:last-child {
+    margin-bottom: 0;
+}
+
+.heroInfo { 
+    display: flex; 
+    flex-direction: column; 
+    margin-bottom: 12px; 
+}
+
+.heroInfo:last-child {
+    margin-bottom: 0;
+}
+
+.heroInfo label, .heroStat label, .container_hero_stats > p { 
+    color: #C4975E; 
+    text-transform: uppercase; 
+    font-size: 0.85em; 
+    margin-bottom: 5px; 
+}
+
+.heroInfo input[type="text"], .heroStat input[type="number"] {
+    padding: 8px;
+    background: rgba(10,8,5,0.8);
+    border: 1px solid #4a3f2a;
+    color: #e0d5c0;
+}
+
+.heroInfo input:focus, .heroStat input:focus { 
+    border-color: #C4975E; 
+    outline: none; 
+}
+
+.class-buttons { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+}
+
+.class-option { 
+    background: rgba(20,15,10,0.6); 
+    border: 1px solid #4a3f2a; 
+}
+
+.class-option:hover { 
+    background: rgba(30,25,15,0.8); 
+}
+
+.class-option input[type="radio"] { 
+    position: absolute; 
+    opacity: 0; 
+}
+
+.class-option label {
+    display: block;
+    padding: 8px 15px 8px 30px;
+    cursor: pointer;
+    color: #d0c5b0;
+    text-transform: uppercase;
+    position: relative;
+    font-size: 0.9em;
+}
+
+.class-option label::before { 
+    content: "◆"; 
+    position: absolute; 
+    left: 12px; 
+    color: #8B7347; 
+}
+
+.class-option input:checked + label, 
+.class-option input:checked + label::before { 
+    color: #C4975E; 
+}
+
+.class-description {
+    padding: 8px 12px;
+    background: rgba(10,8,5,0.9);
+    border-top: 1px solid #4a3f2a;
+    color: #b8ad98;
+    font-style: italic;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+.heroStat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    background: rgba(20,15,10,0.5);
+    border: 1px solid #4a3f2a;
+}
+
+.heroStat:last-child {
+    margin-bottom: 0;
+}
+
+.heroStat input[type="number"] { 
+    width: 60px; 
+    text-align: center; 
+}
+
+.heroStat input[readonly] { 
+    background: rgba(40,35,25,0.8); 
+    border-color: #8B7347; 
+    font-weight: bold; 
+}
+
+.heroStat button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background: #8B7347;
+    border: 1px solid #C4975E;
+    color: #1a1510;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.heroStat button:hover:not(:disabled) { 
+    background: #C4975E; 
+}
+
+.heroStat button:disabled { 
+    background: #3a3330; 
+    border-color: #4a3f2a; 
+    color: #5a4f3a; 
+    cursor: not-allowed; 
+}
+
+/* =========================
+   SAVED ADVENTURES
+========================= */
+.saved-adventures {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.adventure-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: auto;
+}
+
+.adventure-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.adventure-card h2 {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #C4975E;
+}
+
+.adventure-card p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+.adventure-card .button {
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.adventure-card .button:hover {
+    background-color: #8B7347;
+    transform: translateY(-3px);
+}
+
+/* =========================
+   INVENTORY VIEW
+========================= */
+section.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
+}
+
+.inventory {
+    background: rgba(20,20,20,0.95);
+    border: 2px solid #4a3f2a;
+    max-width: 1400px;
+    width: 90%;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr;
+    gap: 15px;
+    padding: 15px;
+}
+
+.divItems {
+    border: 1px solid #4a3f2a;
+    background: rgba(15,12,8,0.8);
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    max-height: 600px;
+    overflow-y: auto;
+    align-content: start;
+}
+
+.invItem {
+    background: rgba(10,8,5,0.8);
+    border: 2px solid #4a3f2a;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.invItem:hover {
+    background: rgba(30,25,15,0.9);
+    border-color: #8B7347;
+    transform: scale(1.05);
+}
+
+.invItem.selected {
+    background: rgba(40,35,25,0.95);
+    border-color: #C4975E;
+    box-shadow: 0 0 10px rgba(196, 151, 94, 0.3);
+}
+
+.invItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: crisp-edges;
+}
+
+.divDescItem {
+    border: 1px solid #4a3f2a;
+    background: rgba(15,12,8,0.8);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.divDescItem p {
+    background: rgba(10,8,5,0.5);
+    border: 1px solid #4a3f2a;
+    padding: 10px 12px;
+    color: #d0c5b0;
+    margin: 0;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.divDescItem p:empty {
+    background: rgba(10,8,5,0.3);
+    border-style: dashed;
+}
+
+#itemName {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #C4975E;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-color: #8B7347;
+}
+
+#itemType {
+    color: #b8ad98;
+    font-style: italic;
+}
+
+#itemDescription {
+    min-height: 80px;
+    align-items: flex-start;
+    line-height: 1.5;
+    color: #b8ad98;
+}
+
+#itemWeight,
+#itemValue,
+#itemPrice {
+    font-family: monospace;
+    color: #e0d5c0;
+}
+
+.divPlayerStatus {
+    border: 1px solid #4a3f2a;
+    background: rgba(15,12,8,0.8);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.divPlayerStatus h2 {
+    color: #C4975E;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4a3f2a;
+    letter-spacing: 1px;
+}
+
+.divPlayerStatus .flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    background: rgba(10,8,5,0.5);
+    border: 1px solid #4a3f2a;
+}
+
+.divPlayerStatus .flex-row:last-child {
+    margin-bottom: 0;
+}
+
+.divPlayerStatus .flex-row:hover {
+    background: rgba(20,15,10,0.6);
+}
+
+.divPlayerStatus #statName {
+    color: #8B7347;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-weight: normal;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.divPlayerStatus .stat {
+    color: #e0d5c0;
+    font-weight: bold;
+    margin: 0;
+    font-size: 1em;
+}
+
+.divItems::-webkit-scrollbar {
+    width: 8px;
+}
+
+.divItems::-webkit-scrollbar-track {
+    background: rgba(10,8,5,0.5);
+    border-left: 1px solid #4a3f2a;
+}
+
+.divItems::-webkit-scrollbar-thumb {
+    background: #4a3f2a;
+    border-radius: 4px;
+}
+
+.divItems::-webkit-scrollbar-thumb:hover {
+    background: #8B7347;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1200px) {
+    .inventory {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+    
+    .divItems {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .formHero { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .saved-adventures {
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container,
+    .about-container,
+    .home-container,
+    .choose-hero,
+    .combat-container,
+    .adventure,
+    .chapitre {
+        padding: 20px;
+        width: 100%;
+        max-width: none;
+    }
+
+    .items-table th,
+    .items-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .items-table td input,
+    .items-table td textarea,
+    .items-table td select {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .primary-btn,
+    .delete-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    .heroStat { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 5px; 
+    }
+    
+    .heroStat input[type="number"] { 
+        width: 100%; 
+    }
+    
+    .saved-adventures {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .adventure-card {
+        margin-bottom: 15px;
+    }
+    
+    .divItems {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 8px;
+    }
+    
+    .divPlayerStatus h2 {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .button,
+    .secondary-btn {
+        padding: 10px 20px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 769px) {
+    .flex-row {
+        flex-direction: row;
+    }
+
+    header {
+        padding: 20px 0;
+    }
+
+    .button {
+        padding: 12px 20px;
+    }
+}
+
+/* =========================
+   ADVENTURE SELECTION PAGES
+========================= */
+
+/* Section découvrir & continuer */
+section.discover,
+section.continue {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Titre principal */
+section.discover h1,
+section.continue h1 {
+    color: #C4975E;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Liste des aventures à découvrir */
+section.discover ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 30px;
+}
+
+section.discover li {
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(4px);
+    border: 2px solid #4a3f2a;
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+section.discover li:hover {
+    transform: translateY(-5px);
+    border-color: #C4975E;
+    box-shadow: 0 10px 30px rgba(196, 151, 94, 0.3);
+}
+
+section.discover li button {
+    width: 100%;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #C4975E 0%, #8B7347 100%);
+    color: #1A1A1A;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3em;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(196, 151, 94, 0.3);
+}
+
+section.discover li button:hover {
+    background: linear-gradient(135deg, #d4a76e 0%, #9b8357 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(196, 151, 94, 0.5);
+}
+
+section.discover li button:active {
+    transform: scale(0.98);
+}
+
+/* Bouton de sélection du héros */
+section.discover .button {
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: rgba(196, 151, 94, 0.2);
+    border: 2px solid #C4975E;
+    color: #C4975E;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+}
+
+section.discover .button:hover {
+    background: #C4975E;
+    color: #1A1A1A;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(196, 151, 94, 0.4);
+}
+
+section.discover .button p {
+    margin: 0;
+}
+
+/* Messages vides */
+section.discover > p,
+section.continue > p {
+    color: #b8ad98;
+    font-size: 1.2em;
+    font-style: italic;
+    padding: 20px;
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px dashed #4a3f2a;
+    border-radius: 8px;
+}
+
+/* Grille des aventures sauvegardées */
+section.continue .saved-adventures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1400px;
+    padding: 0;
+}
+
+/* Carte d'aventure */
+section.continue .adventure {
+    background: rgba(20, 20, 20, 0.9);
+    backdrop-filter: blur(6px);
+    border: 2px solid #4a3f2a;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+section.continue .adventure:hover {
+    transform: translateY(-8px);
+    border-color: #C4975E;
+    box-shadow: 0 15px 40px rgba(196, 151, 94, 0.3);
+}
+
+section.continue .adventure h2 {
+    color: #C4975E;
+    font-size: 1.6em;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4a3f2a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section.continue .adventure p {
+    color: #d0c5b0;
+    font-size: 1em;
+    margin: 5px 0;
+    line-height: 1.6;
+    text-align: left;
+    max-width: none;
+}
+
+section.continue .adventure p strong {
+    color: #8B7347;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+section.continue .adventure .button {
+    margin-top: auto;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #C4975E 0%, #8B7347 100%);
+    color: #1A1A1A;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+    box-shadow: 0 4px 15px rgba(196, 151, 94, 0.3);
+}
+
+section.continue .adventure .button:hover {
+    background: linear-gradient(135deg, #d4a76e 0%, #9b8357 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(196, 151, 94, 0.5);
+}
+
+/* Animation d'apparition */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section.discover li,
+section.continue .adventure {
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+section.discover li:nth-child(1),
+section.continue .adventure:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+section.discover li:nth-child(2),
+section.continue .adventure:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+section.discover li:nth-child(3),
+section.continue .adventure:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+section.discover li:nth-child(4),
+section.continue .adventure:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+    section.discover ul,
+    section.continue .saved-adventures {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    section.discover h1,
+    section.continue h1 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    section.discover ul,
+    section.continue .saved-adventures {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    section.discover li,
+    section.continue .adventure {
+        padding: 25px;
+    }
+
+    section.discover li button {
+        font-size: 1.1em;
+        padding: 12px 20px;
+    }
+
+    section.continue .adventure h2 {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    section.discover h1,
+    section.continue h1 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    section.discover li,
+    section.continue .adventure {
+        padding: 20px;
+    }
+
+    section.discover li button {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+
+    section.discover .button {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+}
+
+/* =========================
+   CHAPTER PAGE
+========================= */
+
+/* Container du chapitre */
+section.chapitre {
+    background: rgba(20, 20, 20, 0.95);
+    border: 2px solid #4a3f2a;
+    max-width: 1000px;
+    width: 90%;
+    padding: 50px;
+    margin: 40px auto;
+}
+
+section.chapitre h1 {
+    color: #C4975E;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    border-bottom: 3px solid #4a3f2a;
+    padding-bottom: 20px;
+}
+
+section.chapitre > p {
+    color: #d0c5b0;
+    font-size: 1.2em;
+    line-height: 1.8;
+    margin: 30px auto;
+    padding: 25px;
+    background: rgba(10, 8, 5, 0.5);
+    border-left: 4px solid #8B7347;
+    border-radius: 6px;
+    text-align: justify;
+    max-width: 100%;
+}
+
+section.chapitre h2 {
+    color: #C4975E;
+    font-size: 1.8em;
+    margin: 40px 0 25px 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+
+/* Zone des choix de chemins */
+.chapter-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px 0;
+    padding: 25px;
+    background: rgba(10, 8, 5, 0.3);
+    border: 2px solid #4a3f2a;
+    border-radius: 10px;
+}
+
+/* Boutons de choix de chemin (liens vers autres chapitres) */
+section.chapitre form:has(input[name="cha"]) {
+    width: 100%;
+}
+
+section.chapitre form:has(input[name="cha"]) button {
+    width: 100%;
+    padding: 18px 30px;
+    background: linear-gradient(135deg, rgba(196, 151, 94, 0.2) 0%, rgba(139, 115, 71, 0.2) 100%);
+    border: 2px solid #8B7347;
+    color: #d0c5b0;
+    font-size: 1.15em;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    position: relative;
+    padding-left: 50px;
+}
+
+section.chapitre form:has(input[name="cha"]) button::before {
+    content: "→";
+    position: absolute;
+    left: 20px;
+    font-size: 1.5em;
+    color: #8B7347;
+    transition: all 0.3s ease;
+}
+
+section.chapitre form:has(input[name="cha"]) button:hover {
+    background: linear-gradient(135deg, rgba(196, 151, 94, 0.4) 0%, rgba(139, 115, 71, 0.4) 100%);
+    border-color: #C4975E;
+    color: #C4975E;
+    transform: translateX(10px);
+    box-shadow: 0 5px 20px rgba(196, 151, 94, 0.3);
+}
+
+section.chapitre form:has(input[name="cha"]) button:hover::before {
+    color: #C4975E;
+    left: 25px;
+}
+
+/* Bouton combat */
+section.chapitre form:has([action*="combat"]) button {
+    width: 100%;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+    border: 2px solid #DC143C;
+    color: #ffffff;
+    font-size: 1.3em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 30px 0;
+    box-shadow: 0 5px 20px rgba(220, 20, 60, 0.4);
+    animation: pulse 2s infinite;
+}
+
+section.chapitre form:has([action*="combat"]) button:hover {
+    background: linear-gradient(135deg, #DC143C 0%, #FF6347 100%);
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(220, 20, 60, 0.6);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 5px 20px rgba(220, 20, 60, 0.4);
+    }
+    50% {
+        box-shadow: 0 5px 30px rgba(220, 20, 60, 0.7);
+    }
+}
+
+/* Zone des actions (inventaire + sauvegarde) */
+.chapter-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #4a3f2a;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Bouton Inventaire */
+section.chapitre a.button[href="showInventory"] {
+    padding: 14px 35px;
+    background: rgba(60, 90, 120, 0.3);
+    border: 2px solid #5a8db8;
+    color: #7ab8e8;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 55px;
+}
+
+section.chapitre a.button[href="showInventory"]::before {
+    content: "🎒";
+    position: absolute;
+    left: 20px;
+    font-size: 1.3em;
+}
+
+section.chapitre a.button[href="showInventory"]:hover {
+    background: rgba(60, 90, 120, 0.5);
+    border-color: #7ab8e8;
+    color: #a8d5ff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(90, 141, 184, 0.4);
+}
+
+/* Bouton Sauvegarder */
+section.chapitre form:has([action*="saveGame"]) {
+    margin: 0;
+}
+
+section.chapitre form:has([action*="saveGame"]) button {
+    padding: 14px 35px;
+    background: rgba(80, 120, 60, 0.3);
+    border: 2px solid #6b9b5a;
+    color: #8ec77d;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 55px;
+}
+
+section.chapitre form:has([action*="saveGame"]) button::before {
+    content: "💾";
+    position: absolute;
+    left: 20px;
+    font-size: 1.3em;
+}
+
+section.chapitre form:has([action*="saveGame"]) button:hover {
+    background: rgba(80, 120, 60, 0.5);
+    border-color: #8ec77d;
+    color: #a8e89d;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(107, 155, 90, 0.4);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    section.chapitre {
+        padding: 30px 20px;
+        width: 95%;
+    }
+
+    section.chapitre h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    section.chapitre > p {
+        font-size: 1.1em;
+        padding: 20px;
+    }
+
+    section.chapitre h2 {
+        font-size: 1.5em;
+        margin: 30px 0 20px 0;
+    }
+
+    .chapter-choices {
+        padding: 20px;
+    }
+
+    section.chapitre form:has(input[name="cha"]) button {
+        font-size: 1em;
+        padding: 15px 20px 15px 45px;
+    }
+
+    section.chapitre form:has([action*="combat"]) button {
+        font-size: 1.1em;
+        padding: 18px 25px;
+    }
+
+    .chapter-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    section.chapitre a.button[href="showInventory"],
+    section.chapitre form:has([action*="saveGame"]) button {
+        width: 100%;
+        padding: 12px 20px 12px 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    section.chapitre h1 {
+        font-size: 1.6em;
+        letter-spacing: 1px;
+    }
+
+    section.chapitre > p {
+        font-size: 1em;
+        padding: 15px;
+    }
+
+    section.chapitre form:has(input[name="cha"]) button {
+        font-size: 0.95em;
+        padding: 12px 15px 12px 40px;
+    }
+
+    section.chapitre form:has(input[name="cha"]) button::before {
+        left: 15px;
+        font-size: 1.2em;
+    }
+}
+
+/* =========================
+   PROFILE PAGE
+========================= */
+
+section.profile-section {
+    min-height: calc(100vh - 100px);
+    padding: 40px 20px;
+}
+
+.profile-container {
+    background: rgba(20, 20, 20, 0.95);
+    border: 2px solid #4a3f2a;
+    max-width: 1200px;
+    width: 90%;
+    padding: 40px;
+    margin: 0 auto;
+}
+
+.profile-container h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    border-bottom: 3px solid #4a3f2a;
+    padding-bottom: 20px;
+}
+
+/* Informations du profil */
+.profile-info {
+    background: rgba(10, 8, 5, 0.5);
+    border: 2px solid #4a3f2a;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-info h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #C4975E;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-info p {
+    font-size: 1.1em;
+    color: #d0c5b0;
+    margin: 15px 0;
+    padding: 12px 15px;
+    background: rgba(20, 15, 10, 0.5);
+    border-left: 3px solid #8B7347;
+    border-radius: 4px;
+    max-width: 100%;
+}
+
+.profile-info strong {
+    color: #8B7347;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+/* Actions du profil */
+.profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.profile-actions .primary-btn,
+.profile-actions .secondary-btn,
+.profile-actions .delete-btn {
+    flex: 1 1 auto;
+    min-width: 200px;
+    padding: 14px 30px;
+    font-size: 1.05em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.profile-actions .primary-btn {
+    background: linear-gradient(135deg, #C4975E 0%, #8B7347 100%);
+    border: 2px solid #C4975E;
+    box-shadow: 0 4px 15px rgba(196, 151, 94, 0.3);
+}
+
+.profile-actions .primary-btn:hover {
+    background: linear-gradient(135deg, #d4a76e 0%, #9b8357 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(196, 151, 94, 0.5);
+}
+
+.profile-actions .delete-btn {
+    background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+    border: 2px solid #DC143C;
+    color: #ffffff;
+}
+
+.profile-actions .delete-btn:hover {
+    background: linear-gradient(135deg, #DC143C 0%, #FF6347 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.5);
+}
+
+/* Section des héros */
+.heroes-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid #4a3f2a;
+}
+
+.heroes-section h3 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #C4975E;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.heroes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Carte de héros */
+.hero-card {
+    background: rgba(10, 8, 5, 0.6);
+    border: 2px solid #4a3f2a;
+    border-radius: 10px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-card::before {
+    content: "⚔";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 120px;
+    color: rgba(196, 151, 94, 0.05);
+    z-index: 0;
+}
+
+.hero-card:hover {
+    transform: translateY(-5px);
+    border-color: #C4975E;
+    box-shadow: 0 10px 30px rgba(196, 151, 94, 0.3);
+}
+
+.hero-card p {
+    font-size: 1em;
+    color: #d0c5b0;
+    margin: 12px 0;
+    padding: 10px 12px;
+    background: rgba(20, 15, 10, 0.5);
+    border-left: 3px solid #8B7347;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    max-width: 100%;
+}
+
+.hero-card strong {
+    color: #8B7347;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+}
+
+.hero-card form {
+    margin-top: 20px;
+}
+
+.hero-card .delete-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background: rgba(139, 0, 0, 0.3);
+    border: 2px solid #8B0000;
+    color: #ff6b6b;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+}
+
+.hero-card .delete-btn:hover {
+    background: rgba(139, 0, 0, 0.6);
+    border-color: #DC143C;
+    color: #ffffff;
+}
+
+/* Message vide */
+.heroes-container > p {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #b8ad98;
+    font-size: 1.2em;
+    font-style: italic;
+    padding: 40px 20px;
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px dashed #4a3f2a;
+    border-radius: 8px;
+    max-width: 100%;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: rgba(20, 20, 20, 0.98);
+    border: 3px solid #C4975E;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(196, 151, 94, 0.4);
+}
+
+.modal-content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #DC143C;
+}
+
+.modal-content p {
+    font-size: 1.1em;
+    color: #d0c5b0;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 100%;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.cancel-btn,
+.confirm-btn {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cancel-btn {
+    background: rgba(60, 60, 60, 0.85);
+    border: 2px solid #555;
+    color: #e0e0e0;
+}
+
+.cancel-btn:hover {
+    background: rgba(90, 90, 90, 0.95);
+    border-color: #C4975E;
+    transform: translateY(-2px);
+}
+
+.confirm-btn {
+    background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+    border: 2px solid #DC143C;
+    color: #ffffff;
+}
+
+.confirm-btn:hover {
+    background: linear-gradient(135deg, #DC143C 0%, #FF6347 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 30px 20px;
+        width: 95%;
+    }
+
+    .profile-container h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .profile-info {
+        padding: 20px;
+    }
+
+    .profile-info h3 {
+        font-size: 1.3em;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .profile-actions .primary-btn,
+    .profile-actions .secondary-btn,
+    .profile-actions .delete-btn {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .heroes-section h3 {
+        font-size: 1.6em;
+    }
+
+    .heroes-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .modal-content {
+        padding: 30px 20px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cancel-btn,
+    .confirm-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container h2 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .profile-info p {
+        font-size: 1em;
+        padding: 10px 12px;
+    }
+
+    .heroes-section h3 {
+        font-size: 1.4em;
+    }
+
+    .hero-card {
+        padding: 20px;
+    }
+
+    .hero-card p {
+        font-size: 0.95em;
+    }
+}

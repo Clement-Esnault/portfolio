@@ -1,0 +1,8 @@
+header, header *{
+    display: flex;
+    flex-direction: row;
+}
+
+.container{
+    border: solid 2px green;
+}
