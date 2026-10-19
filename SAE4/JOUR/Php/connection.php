@@ -1,7 +1,7 @@
 <?php
 
-$db_username = "agile_3";
-$db_password = "agile_3";
+$db_username = getenv("DB_USERNAME") ?: "";
+$db_password = getenv("DB_PASSWORD") ?: "";
 $db = fabriquerChaineConnexPDO();
 
 
